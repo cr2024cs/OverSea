@@ -1,0 +1,70 @@
+:root {
+  --bg: #f7f8fa;
+  --card: #ffffff;
+  --border: #e6e8eb;
+  --text: #1f2329;
+  --text-2: #6b7280;
+  --text-3: #9aa1ab;
+  --accent: #4d6bfe;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    "PingFang SC",
+    "Microsoft YaHei",
+    sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+@media print {
+  .sidebar,
+  .chat-header,
+  .messages,
+  .composer,
+  .login-page {
+    display: none !important;
+  }
+
+  .shell {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .main {
+    display: none !important;
+  }
+
+  .artifact {
+    position: static !important;
+    display: block !important;
+    height: auto !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+}

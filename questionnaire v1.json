@@ -1,0 +1,2900 @@
+{
+  "schema_version": "1.0",
+  "questionnaire_id": "overseas_project_intake",
+  "version": "1.0",
+  "title": "出海项目客户问卷",
+  "updated": "2026-11-08",
+  "estimated_minutes": 10,
+  "condition_syntax": {
+    "q_in": "{\"q\":\"Q06\",\"in\":[...]}：单选题答案在列表中，或多选题任一已选项在列表中",
+    "q_not_in": "{\"q\":\"Q06\",\"not_in\":[...]}：已作答且所有已选项都不在列表中",
+    "project_in": "{\"project\":\"country\",\"in\":[\"TH\"]}：引用 PM 新建项目表单字段",
+    "all_any": "{\"all\":[...]} 全部成立；{\"any\":[...]} 任一成立",
+    "always": "{\"always\":true} 恒成立",
+    "any_followup": "{\"any_followup\":true}：任一带 followup 标记的选项被选中"
+  },
+  "option_flags": {
+    "followup": "选中后在 M1 追问清单生成一条追问",
+    "exclusive": "多选题中与其他选项互斥，选中即清空其他选项"
+  },
+  "project_fields": {
+    "country": "国家（ISO 3166-1 两位代码）",
+    "industry": "行业",
+    "entry_mode": "出海方式"
+  },
+  "sections": [
+    {
+      "id": "A",
+      "title": "企业基本情况"
+    },
+    {
+      "id": "B",
+      "title": "投资方案"
+    },
+    {
+      "id": "C",
+      "title": "时间与目标"
+    },
+    {
+      "id": "D",
+      "title": "选址与土地",
+      "show_if": {
+        "q": "Q06",
+        "in": [
+          "greenfield",
+          "lease_factory",
+          "acquisition",
+          "jv",
+          "undecided"
+        ]
+      }
+    },
+    {
+      "id": "E",
+      "title": "设备与技术"
+    },
+    {
+      "id": "F",
+      "title": "人员"
+    },
+    {
+      "id": "G",
+      "title": "国内手续与合规"
+    },
+    {
+      "id": "H",
+      "title": "服务需求与偏好"
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q01",
+      "section": "A",
+      "text": "贵公司的企业性质是？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "private",
+          "label": "民营企业"
+        },
+        {
+          "code": "central_soe",
+          "label": "中央企业或其下属企业"
+        },
+        {
+          "code": "local_soe",
+          "label": "地方国有企业或其下属企业"
+        },
+        {
+          "code": "listed",
+          "label": "上市公司或其子公司"
+        },
+        {
+          "code": "foreign_invested",
+          "label": "外资或中外合资企业"
+        },
+        {
+          "code": "individual",
+          "label": "个人投资者（以个人名义投资）"
+        },
+        {
+          "code": "other",
+          "label": "其他",
+          "followup": true
+        }
+      ],
+      "purpose": "决定境内备案的层级与路径；国企需另走国资审批，上市公司需信息披露，个人投资路径不同。",
+      "tasks": [
+        "T04",
+        "T05"
+      ]
+    },
+    {
+      "id": "Q02",
+      "section": "A",
+      "text": "本次在境外从事的业务属于哪个细分行业？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "auto",
+          "label": "汽车及零部件"
+        },
+        {
+          "code": "electronics",
+          "label": "电子电器与半导体"
+        },
+        {
+          "code": "new_energy",
+          "label": "新能源（光伏、储能、电池）"
+        },
+        {
+          "code": "machinery",
+          "label": "机械设备"
+        },
+        {
+          "code": "metal",
+          "label": "金属制品与加工"
+        },
+        {
+          "code": "chemical",
+          "label": "化工"
+        },
+        {
+          "code": "plastic_rubber",
+          "label": "塑料与橡胶制品"
+        },
+        {
+          "code": "textile",
+          "label": "纺织服装、皮革与鞋类"
+        },
+        {
+          "code": "furniture",
+          "label": "家具与木制品"
+        },
+        {
+          "code": "food",
+          "label": "食品与农产品加工"
+        },
+        {
+          "code": "pharma",
+          "label": "医药与医疗器械"
+        },
+        {
+          "code": "consumer",
+          "label": "消费品与零售"
+        },
+        {
+          "code": "logistics",
+          "label": "物流与仓储"
+        },
+        {
+          "code": "it_digital",
+          "label": "信息技术与数字服务"
+        },
+        {
+          "code": "other",
+          "label": "其他",
+          "followup": true
+        }
+      ],
+      "purpose": "匹配当地投资优惠类别、外资准入限制、环评要求和服务商专长。",
+      "tasks": [
+        "T01",
+        "T11",
+        "T12",
+        "T15"
+      ],
+      "help": "如与国内主业不同，请按境外项目选择。",
+      "prefill_from": "project.industry"
+    },
+    {
+      "id": "Q03",
+      "section": "A",
+      "text": "贵公司上一年度的营业收入大约是？",
+      "type": "single",
+      "required": false,
+      "options": [
+        {
+          "code": "lt_100m",
+          "label": "1 亿元以下"
+        },
+        {
+          "code": "100m_500m",
+          "label": "1–5 亿元"
+        },
+        {
+          "code": "500m_2b",
+          "label": "5–20 亿元"
+        },
+        {
+          "code": "2b_10b",
+          "label": "20–100 亿元"
+        },
+        {
+          "code": "gt_10b",
+          "label": "100 亿元以上"
+        }
+      ],
+      "purpose": "判断企业体量与内部审批复杂度，用于配置服务强度和报价。",
+      "tasks": []
+    },
+    {
+      "id": "Q04",
+      "section": "A",
+      "text": "贵公司此前是否有过境外投资？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "none",
+          "label": "没有，这是第一次"
+        },
+        {
+          "code": "other_country",
+          "label": "在其他国家或地区设立过公司"
+        },
+        {
+          "code": "this_country",
+          "label": "在本次目的国已设立过公司"
+        },
+        {
+          "code": "closed",
+          "label": "设立过，但已注销或转让"
+        }
+      ],
+      "purpose": "首次出海需完整走境内备案；在目的国已有公司的，可评估以现有主体增资扩产。",
+      "tasks": [
+        "T01",
+        "T04",
+        "T05",
+        "T06"
+      ]
+    },
+    {
+      "id": "Q05",
+      "section": "A",
+      "text": "贵公司内部由谁负责推进本项目？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "none",
+          "label": "没有专人，希望平台全程负责"
+        },
+        {
+          "code": "legal_no_overseas",
+          "label": "有法务或投资人员，但缺少境外经验"
+        },
+        {
+          "code": "overseas_team",
+          "label": "有专职的海外业务团队"
+        },
+        {
+          "code": "boss",
+          "label": "由老板或高管亲自负责"
+        }
+      ],
+      "purpose": "决定 PM 的服务强度、沟通频率和客户准备材料的方式。",
+      "tasks": []
+    },
+    {
+      "id": "Q06",
+      "section": "B",
+      "text": "本次出海的主要形式是？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "greenfield",
+          "label": "新建工厂"
+        },
+        {
+          "code": "lease_factory",
+          "label": "租赁现成厂房生产"
+        },
+        {
+          "code": "acquisition",
+          "label": "收购当地公司或工厂"
+        },
+        {
+          "code": "jv",
+          "label": "与当地企业合资"
+        },
+        {
+          "code": "trading_co",
+          "label": "设立贸易或销售公司"
+        },
+        {
+          "code": "regional_hq",
+          "label": "设立地区总部或服务公司"
+        },
+        {
+          "code": "undecided",
+          "label": "尚未确定",
+          "followup": true
+        }
+      ],
+      "purpose": "决定任务地图的主干：是否需要土地、厂房、工厂许可、设备转移等整条链路。",
+      "tasks": [
+        "T01",
+        "T13",
+        "T14",
+        "T15",
+        "T16",
+        "T17",
+        "T18"
+      ],
+      "prefill_from": "project.entry_mode"
+    },
+    {
+      "id": "Q07",
+      "section": "B",
+      "text": "中方计划在当地公司中的持股比例是？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "wfoe",
+          "label": "100% 独资"
+        },
+        {
+          "code": "majority",
+          "label": "50%–99%（含 50%）"
+        },
+        {
+          "code": "minority",
+          "label": "低于 50%"
+        },
+        {
+          "code": "undecided",
+          "label": "尚未确定",
+          "followup": true
+        }
+      ],
+      "purpose": "泰国以外资持股是否达到 50% 判断“外国人”身份，影响外资准入、外商经营证书和购地资格。",
+      "tasks": [
+        "T01",
+        "T08",
+        "T11",
+        "T12"
+      ],
+      "help": "指中方（含中方控制的境外公司）合计持股。"
+    },
+    {
+      "id": "Q08",
+      "section": "B",
+      "text": "计划通过什么路径持有当地公司？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "direct",
+          "label": "国内公司直接持股"
+        },
+        {
+          "code": "hk",
+          "label": "通过香港公司持股"
+        },
+        {
+          "code": "sg",
+          "label": "通过新加坡公司持股"
+        },
+        {
+          "code": "other_offshore",
+          "label": "通过其他境外公司持股"
+        },
+        {
+          "code": "individual",
+          "label": "由股东个人持股"
+        },
+        {
+          "code": "need_advice",
+          "label": "不确定，需要建议",
+          "followup": true
+        }
+      ],
+      "purpose": "决定是否设立中间层、境内备案的申报口径，以及股息汇回和退出的税负。",
+      "tasks": [
+        "T01",
+        "T04",
+        "T07"
+      ]
+    },
+    {
+      "id": "Q09",
+      "section": "B",
+      "text": "投资资金将以哪些形式投入？（可多选）",
+      "type": "multi",
+      "required": true,
+      "options": [
+        {
+          "code": "cash",
+          "label": "现金出资"
+        },
+        {
+          "code": "equipment_in_kind",
+          "label": "国内设备作价出资"
+        },
+        {
+          "code": "ip_in_kind",
+          "label": "技术或知识产权出资"
+        },
+        {
+          "code": "shareholder_loan",
+          "label": "股东借款"
+        },
+        {
+          "code": "bank_loan",
+          "label": "银行贷款（含内保外贷）"
+        },
+        {
+          "code": "local_financing",
+          "label": "在当地融资"
+        },
+        {
+          "code": "unsure",
+          "label": "不确定",
+          "followup": true,
+          "exclusive": true
+        }
+      ],
+      "purpose": "设备或技术出资需要资产评估、出口管制核查和跨境报关；借款涉及外债与外汇登记。",
+      "tasks": [
+        "T03",
+        "T06",
+        "T19",
+        "T21"
+      ]
+    },
+    {
+      "id": "Q10",
+      "section": "B",
+      "text": "投资资金的来源是？（可多选）",
+      "type": "multi",
+      "required": true,
+      "options": [
+        {
+          "code": "own_funds",
+          "label": "企业自有资金"
+        },
+        {
+          "code": "domestic_bank",
+          "label": "国内银行贷款"
+        },
+        {
+          "code": "related_loan",
+          "label": "股东或关联方借款"
+        },
+        {
+          "code": "offshore_financing",
+          "label": "境外融资"
+        },
+        {
+          "code": "not_ready",
+          "label": "尚未落实",
+          "followup": true,
+          "exclusive": true
+        }
+      ],
+      "purpose": "境内备案需说明资金来源；资金未落实的项目先做方案，暂不启动需付费的申请。",
+      "tasks": [
+        "T04",
+        "T06"
+      ]
+    },
+    {
+      "id": "Q11",
+      "section": "B",
+      "text": "项目目前进展到哪一步？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "idea",
+          "label": "只有初步想法"
+        },
+        {
+          "code": "comparing",
+          "label": "已考察，正在比较国家或地区"
+        },
+        {
+          "code": "choosing_site",
+          "label": "已选定国家，正在选址"
+        },
+        {
+          "code": "site_selected",
+          "label": "已选定地块或厂房"
+        },
+        {
+          "code": "signed",
+          "label": "已签署意向书或合同"
+        },
+        {
+          "code": "started",
+          "label": "已开始办理部分手续"
+        }
+      ],
+      "purpose": "确定任务地图的起点；已签约或已办手续的，先复核已签文件与已办事项。",
+      "tasks": [
+        "T01"
+      ]
+    },
+    {
+      "id": "Q12",
+      "section": "C",
+      "text": "希望当地工厂或公司何时开始运营？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "lt_6m",
+          "label": "6 个月内"
+        },
+        {
+          "code": "6_12m",
+          "label": "6–12 个月"
+        },
+        {
+          "code": "12_18m",
+          "label": "12–18 个月"
+        },
+        {
+          "code": "18_24m",
+          "label": "18–24 个月"
+        },
+        {
+          "code": "gt_24m",
+          "label": "24 个月以后"
+        },
+        {
+          "code": "undecided",
+          "label": "尚未确定",
+          "followup": true
+        }
+      ],
+      "purpose": "倒排总计划；新建工厂从决策到量产通常约 15 个月，期望过短时提示风险。",
+      "tasks": [
+        "T01"
+      ]
+    },
+    {
+      "id": "Q13",
+      "section": "C",
+      "text": "本次出海最主要的目的是？（最多选 3 项）",
+      "type": "multi",
+      "required": true,
+      "options": [
+        {
+          "code": "follow_customer",
+          "label": "跟随客户，就近供货"
+        },
+        {
+          "code": "tariff",
+          "label": "应对关税或贸易壁垒"
+        },
+        {
+          "code": "cost",
+          "label": "降低生产成本"
+        },
+        {
+          "code": "local_market",
+          "label": "开拓当地市场"
+        },
+        {
+          "code": "third_market",
+          "label": "以当地为基地开拓第三国市场"
+        },
+        {
+          "code": "resources",
+          "label": "获取资源或原材料"
+        },
+        {
+          "code": "supply_chain",
+          "label": "分散供应链风险"
+        },
+        {
+          "code": "branding",
+          "label": "品牌国际化"
+        },
+        {
+          "code": "other",
+          "label": "其他",
+          "followup": true
+        }
+      ],
+      "purpose": "决定方案重点：关税导向的项目需做原产地评估，市场导向的项目侧重销售与分销合规。",
+      "tasks": [
+        "T01"
+      ],
+      "max_select": 3
+    },
+    {
+      "id": "Q14",
+      "section": "C",
+      "text": "当地生产的产品主要销往哪里？（可多选）",
+      "type": "multi",
+      "required": true,
+      "options": [
+        {
+          "code": "local",
+          "label": "当地市场"
+        },
+        {
+          "code": "asean",
+          "label": "东盟其他国家"
+        },
+        {
+          "code": "us",
+          "label": "美国"
+        },
+        {
+          "code": "eu",
+          "label": "欧洲"
+        },
+        {
+          "code": "china",
+          "label": "中国（返销）"
+        },
+        {
+          "code": "other",
+          "label": "其他地区"
+        },
+        {
+          "code": "undecided",
+          "label": "尚未确定",
+          "followup": true,
+          "exclusive": true
+        }
+      ],
+      "purpose": "销往美国、欧洲的项目需评估原产地规则与反规避调查风险；返销中国涉及进口关税与原产地证书。",
+      "tasks": [
+        "T01"
+      ]
+    },
+    {
+      "id": "Q15",
+      "section": "D",
+      "text": "当地厂址目前确定到什么程度？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "fixed",
+          "label": "已确定具体地块或厂房"
+        },
+        {
+          "code": "shortlist",
+          "label": "已有 2–3 个候选"
+        },
+        {
+          "code": "region_only",
+          "label": "只确定了大致区域"
+        },
+        {
+          "code": "undecided",
+          "label": "尚未确定",
+          "followup": true
+        }
+      ],
+      "purpose": "决定选址与土地尽调是针对单一地块，还是多地块比选。",
+      "tasks": [
+        "T13"
+      ]
+    },
+    {
+      "id": "Q16",
+      "section": "D",
+      "text": "在泰国倾向的区域是？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "eec",
+          "label": "东部经济走廊（春武里、罗勇、北柳）"
+        },
+        {
+          "code": "bangkok",
+          "label": "曼谷及周边"
+        },
+        {
+          "code": "central",
+          "label": "中部（大城、巴吞他尼等）"
+        },
+        {
+          "code": "north",
+          "label": "北部"
+        },
+        {
+          "code": "northeast",
+          "label": "东北部"
+        },
+        {
+          "code": "south",
+          "label": "南部"
+        },
+        {
+          "code": "undecided",
+          "label": "尚未确定",
+          "followup": true
+        }
+      ],
+      "purpose": "区域影响投资优惠力度、最低工资标准、园区选择与物流成本。",
+      "tasks": [
+        "T11",
+        "T13"
+      ],
+      "show_if": {
+        "project": "country",
+        "in": [
+          "TH"
+        ]
+      }
+    },
+    {
+      "id": "Q17",
+      "section": "D",
+      "text": "厂址倾向放在工业园区内还是园区外？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "in_estate",
+          "label": "工业园区内"
+        },
+        {
+          "code": "out_estate",
+          "label": "工业园区外"
+        },
+        {
+          "code": "need_advice",
+          "label": "都可以，需要建议",
+          "followup": true
+        }
+      ],
+      "purpose": "园区内由园区管理局办理土地与工厂许可，外资可持有园区土地；园区外购地需投资促进机构的土地许可。",
+      "tasks": [
+        "T13",
+        "T14",
+        "T18"
+      ],
+      "show_if": {
+        "q": "Q06",
+        "in": [
+          "greenfield",
+          "lease_factory",
+          "jv",
+          "undecided"
+        ]
+      }
+    },
+    {
+      "id": "Q18",
+      "section": "D",
+      "text": "土地和厂房计划如何取得？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "buy_build",
+          "label": "购买土地并自建厂房"
+        },
+        {
+          "code": "lease_build",
+          "label": "租赁土地并自建厂房"
+        },
+        {
+          "code": "lease_ready",
+          "label": "租赁现成厂房"
+        },
+        {
+          "code": "bts",
+          "label": "由园区开发商定制建设后租赁"
+        },
+        {
+          "code": "acquire_factory",
+          "label": "收购现有工厂"
+        },
+        {
+          "code": "undecided",
+          "label": "尚未确定",
+          "followup": true
+        }
+      ],
+      "purpose": "直接决定土地与厂房任务：自建需走完设计、建筑许可、施工验收；租赁现成厂房只需租赁登记与工厂许可。",
+      "tasks": [
+        "T13",
+        "T14",
+        "T15",
+        "T16",
+        "T17",
+        "T18"
+      ]
+    },
+    {
+      "id": "Q19",
+      "section": "D",
+      "text": "预计需要的用地面积是？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "lt_10k",
+          "label": "1 万平方米以下（约 6 莱以下）"
+        },
+        {
+          "code": "10k_30k",
+          "label": "1–3 万平方米（约 6–19 莱）"
+        },
+        {
+          "code": "30k_100k",
+          "label": "3–10 万平方米（约 19–63 莱）"
+        },
+        {
+          "code": "gt_100k",
+          "label": "10 万平方米以上（约 63 莱以上）"
+        },
+        {
+          "code": "unsure",
+          "label": "不确定",
+          "followup": true
+        }
+      ],
+      "purpose": "用于筛选园区与地块，估算土地成本。",
+      "tasks": [
+        "T13",
+        "T14"
+      ],
+      "help": "泰国常用“莱”计量土地，1 莱 = 1,600 平方米。"
+    },
+    {
+      "id": "Q20",
+      "section": "D",
+      "text": "生产过程是否涉及以下情况？（可多选）",
+      "type": "multi",
+      "required": true,
+      "options": [
+        {
+          "code": "wastewater",
+          "label": "产生工业废水"
+        },
+        {
+          "code": "emissions",
+          "label": "产生废气或粉尘"
+        },
+        {
+          "code": "hazchem",
+          "label": "使用或储存危险化学品"
+        },
+        {
+          "code": "noise",
+          "label": "噪声或振动较大"
+        },
+        {
+          "code": "high_power",
+          "label": "用电量大（如熔炼、电镀、热处理）"
+        },
+        {
+          "code": "none",
+          "label": "以上都不涉及",
+          "exclusive": true
+        },
+        {
+          "code": "unsure",
+          "label": "不确定",
+          "followup": true,
+          "exclusive": true
+        }
+      ],
+      "purpose": "判断是否需要环境影响评估（IEE/EIA）、工厂许可类别与园区准入。",
+      "tasks": [
+        "T15",
+        "T18"
+      ]
+    },
+    {
+      "id": "Q21",
+      "section": "E",
+      "text": "生产设备计划从哪里来？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "local_third",
+          "label": "全部在当地或第三国新购"
+        },
+        {
+          "code": "new_china",
+          "label": "全部从中国新购"
+        },
+        {
+          "code": "partial_transfer",
+          "label": "部分从国内工厂转移在用设备"
+        },
+        {
+          "code": "mainly_transfer",
+          "label": "主要从国内工厂转移在用设备"
+        },
+        {
+          "code": "undecided",
+          "label": "尚未确定",
+          "followup": true
+        }
+      ],
+      "purpose": "从中国出境的设备需出口报关与出口管制核查；转移在用设备另需资产评估，并核对当地对旧设备的进口限制。",
+      "tasks": [
+        "T03",
+        "T19",
+        "T20",
+        "T21",
+        "T22",
+        "T23"
+      ],
+      "show_if": {
+        "q": "Q06",
+        "not_in": [
+          "trading_co",
+          "regional_hq"
+        ]
+      }
+    },
+    {
+      "id": "Q22",
+      "section": "E",
+      "text": "拟转移的在用设备已使用多少年？（可多选）",
+      "type": "multi",
+      "required": true,
+      "options": [
+        {
+          "code": "lt_5",
+          "label": "不到 5 年"
+        },
+        {
+          "code": "5_10",
+          "label": "5–10 年"
+        },
+        {
+          "code": "gt_10",
+          "label": "10 年以上"
+        },
+        {
+          "code": "unknown",
+          "label": "不清楚",
+          "followup": true,
+          "exclusive": true
+        }
+      ],
+      "purpose": "当地对进口旧设备有役龄和检测要求，超龄设备可能无法享受进口免税，甚至无法进口。",
+      "tasks": [
+        "T20",
+        "T22"
+      ],
+      "show_if": {
+        "any": [
+          {
+            "q": "Q21",
+            "in": [
+              "partial_transfer",
+              "mainly_transfer"
+            ]
+          },
+          {
+            "q": "Q09",
+            "in": [
+              "equipment_in_kind"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q23",
+      "section": "E",
+      "text": "拟转移设备的总价值大约是？（按账面净值估计）",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "lt_1m",
+          "label": "100 万元以下"
+        },
+        {
+          "code": "1m_10m",
+          "label": "100–1,000 万元"
+        },
+        {
+          "code": "10m_50m",
+          "label": "1,000–5,000 万元"
+        },
+        {
+          "code": "gt_50m",
+          "label": "5,000 万元以上"
+        },
+        {
+          "code": "unsure",
+          "label": "不确定",
+          "followup": true
+        }
+      ],
+      "purpose": "用于确定评估范围、作价出资金额和境内备案中的出资构成。",
+      "tasks": [
+        "T03",
+        "T04",
+        "T05"
+      ],
+      "show_if": {
+        "any": [
+          {
+            "q": "Q21",
+            "in": [
+              "partial_transfer",
+              "mainly_transfer"
+            ]
+          },
+          {
+            "q": "Q09",
+            "in": [
+              "equipment_in_kind"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q24",
+      "section": "E",
+      "text": "拟转移的设备中，是否有仍在海关监管期内的减免税进口设备？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "yes",
+          "label": "有"
+        },
+        {
+          "code": "no",
+          "label": "没有"
+        },
+        {
+          "code": "unknown",
+          "label": "不清楚",
+          "followup": true
+        }
+      ],
+      "purpose": "监管期内的设备须先办理解除监管或补税手续，才能出口。",
+      "tasks": [
+        "T21"
+      ],
+      "help": "即当初进口时享受了关税减免、尚未满监管年限的设备。",
+      "show_if": {
+        "any": [
+          {
+            "q": "Q21",
+            "in": [
+              "partial_transfer",
+              "mainly_transfer"
+            ]
+          },
+          {
+            "q": "Q09",
+            "in": [
+              "equipment_in_kind"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "Q25",
+      "section": "E",
+      "text": "当地项目会如何使用贵公司的技术？（可多选）",
+      "type": "multi",
+      "required": true,
+      "options": [
+        {
+          "code": "transfer_ip",
+          "label": "向当地公司转让或授权专利、技术"
+        },
+        {
+          "code": "dispatch_tech",
+          "label": "派技术人员到当地指导生产"
+        },
+        {
+          "code": "general_only",
+          "label": "不涉及，只使用通用技术",
+          "exclusive": true
+        },
+        {
+          "code": "unsure",
+          "label": "不确定",
+          "followup": true,
+          "exclusive": true
+        }
+      ],
+      "purpose": "技术转让、许可以及派技术人员指导都可能构成技术出口，需核对技术出口管理目录并办理相应手续。",
+      "tasks": [
+        "T19",
+        "T27"
+      ]
+    },
+    {
+      "id": "Q26",
+      "section": "E",
+      "text": "拟出境的设备、零部件或技术是否可能涉及出口管制物项？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "possible",
+          "label": "可能涉及"
+        },
+        {
+          "code": "no",
+          "label": "不涉及"
+        },
+        {
+          "code": "unknown",
+          "label": "不清楚",
+          "followup": true
+        }
+      ],
+      "purpose": "涉及管制物项须先取得出口许可，否则设备无法出境。",
+      "tasks": [
+        "T19",
+        "T21"
+      ],
+      "help": "例如高端芯片与半导体设备、无人机、特定化学品、精密数控机床、加密设备等。"
+    },
+    {
+      "id": "Q27",
+      "section": "F",
+      "text": "满产时当地预计员工总数是？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "lt_50",
+          "label": "不到 50 人"
+        },
+        {
+          "code": "50_100",
+          "label": "50–100 人"
+        },
+        {
+          "code": "100_300",
+          "label": "101–300 人"
+        },
+        {
+          "code": "300_1000",
+          "label": "301–1,000 人"
+        },
+        {
+          "code": "gt_1000",
+          "label": "超过 1,000 人"
+        },
+        {
+          "code": "unsure",
+          "label": "不确定",
+          "followup": true
+        }
+      ],
+      "purpose": "员工规模决定工作规章、福利委员会等用工义务，以及外籍员工比例要求。",
+      "tasks": [
+        "T24",
+        "T25",
+        "T26",
+        "T28"
+      ]
+    },
+    {
+      "id": "Q28",
+      "section": "F",
+      "text": "计划从国内派驻多少人？（含长期与短期）",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "none",
+          "label": "不派驻"
+        },
+        {
+          "code": "lt_5",
+          "label": "1–4 人"
+        },
+        {
+          "code": "5_20",
+          "label": "5–20 人"
+        },
+        {
+          "code": "20_50",
+          "label": "21–50 人"
+        },
+        {
+          "code": "gt_50",
+          "label": "超过 50 人"
+        },
+        {
+          "code": "undecided",
+          "label": "尚未确定",
+          "followup": true
+        }
+      ],
+      "purpose": "决定外派方案、签证与工作许可工作量；不享受投资优惠时，每名外籍员工需对应一定数量的本地员工和注册资本。",
+      "tasks": [
+        "T27",
+        "T28"
+      ]
+    },
+    {
+      "id": "Q29",
+      "section": "F",
+      "text": "派驻人员主要担任哪些岗位？（可多选）",
+      "type": "multi",
+      "required": true,
+      "options": [
+        {
+          "code": "executive",
+          "label": "高层管理"
+        },
+        {
+          "code": "finance",
+          "label": "财务"
+        },
+        {
+          "code": "production_tech",
+          "label": "生产与技术骨干"
+        },
+        {
+          "code": "install_short",
+          "label": "设备安装调试（短期）"
+        },
+        {
+          "code": "quality",
+          "label": "质量管理"
+        },
+        {
+          "code": "sales_purchasing",
+          "label": "销售与采购"
+        },
+        {
+          "code": "other",
+          "label": "其他",
+          "followup": true
+        }
+      ],
+      "purpose": "不同岗位适用的工作许可类型与审批材料不同；技术岗位派驻还需结合技术出口核查。",
+      "tasks": [
+        "T19",
+        "T27",
+        "T28"
+      ],
+      "show_if": {
+        "q": "Q28",
+        "not_in": [
+          "none"
+        ]
+      }
+    },
+    {
+      "id": "Q30",
+      "section": "F",
+      "text": "派驻人员的劳动关系计划如何安排？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "keep_china",
+          "label": "保留国内劳动合同，以外派方式派出"
+        },
+        {
+          "code": "local_contract",
+          "label": "与当地公司签订劳动合同"
+        },
+        {
+          "code": "dual",
+          "label": "国内、当地两边都签"
+        },
+        {
+          "code": "undecided",
+          "label": "尚未考虑",
+          "followup": true
+        }
+      ],
+      "purpose": "影响两地社保与个税缴纳；中泰之间没有社保互免协定，需提前设计缴纳方案。",
+      "tasks": [
+        "T27"
+      ],
+      "show_if": {
+        "q": "Q28",
+        "not_in": [
+          "none"
+        ]
+      }
+    },
+    {
+      "id": "Q31",
+      "section": "F",
+      "text": "在当地招聘与用工方面，希望得到哪些协助？（可多选）",
+      "type": "multi",
+      "required": true,
+      "options": [
+        {
+          "code": "recruiting",
+          "label": "招聘渠道与招聘中介"
+        },
+        {
+          "code": "comp_benefits",
+          "label": "薪酬福利方案设计"
+        },
+        {
+          "code": "contracts_rules",
+          "label": "劳动合同与工作规章"
+        },
+        {
+          "code": "payroll",
+          "label": "社保登记与薪资代发"
+        },
+        {
+          "code": "training",
+          "label": "员工培训"
+        },
+        {
+          "code": "none",
+          "label": "暂不需要",
+          "exclusive": true
+        }
+      ],
+      "purpose": "确定人事制度、招聘、社保登记三项任务的服务范围与服务商类型。",
+      "tasks": [
+        "T24",
+        "T25",
+        "T26"
+      ]
+    },
+    {
+      "id": "Q32",
+      "section": "G",
+      "text": "国内的境外投资手续（发改备案、商务备案、外汇登记）目前进展如何？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "not_started",
+          "label": "尚未开始"
+        },
+        {
+          "code": "preparing",
+          "label": "正在准备材料"
+        },
+        {
+          "code": "partial",
+          "label": "已取得部分备案"
+        },
+        {
+          "code": "done",
+          "label": "已全部完成"
+        },
+        {
+          "code": "unknown",
+          "label": "不清楚是否需要办理",
+          "followup": true
+        }
+      ],
+      "purpose": "已办理的上传凭证、平台复核；未办理的纳入任务地图。",
+      "tasks": [
+        "T04",
+        "T05",
+        "T06"
+      ]
+    },
+    {
+      "id": "Q33",
+      "section": "G",
+      "text": "在国内手续办完之前，是否已有资金或设备出境？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "no",
+          "label": "没有"
+        },
+        {
+          "code": "fees_only",
+          "label": "已汇出少量前期费用"
+        },
+        {
+          "code": "funds_or_equipment",
+          "label": "已有投资资金或设备出境"
+        },
+        {
+          "code": "unknown",
+          "label": "不清楚",
+          "followup": true
+        }
+      ],
+      "purpose": "先出境、后备案存在合规风险，需关联律所优先评估补救方案。",
+      "tasks": [
+        "T04",
+        "T05",
+        "T06"
+      ]
+    },
+    {
+      "id": "Q34",
+      "section": "G",
+      "text": "是否计划申请当地的投资优惠？（泰国为 BOI 投资促进）",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "plan",
+          "label": "计划申请"
+        },
+        {
+          "code": "applying",
+          "label": "正在申请"
+        },
+        {
+          "code": "obtained",
+          "label": "已取得"
+        },
+        {
+          "code": "not_apply",
+          "label": "不打算申请"
+        },
+        {
+          "code": "unsure",
+          "label": "不了解，需要评估",
+          "followup": true
+        }
+      ],
+      "purpose": "是否申请优惠，决定机器进口免税、外资购地、外籍员工审批等一整组任务。",
+      "tasks": [
+        "T11",
+        "T20",
+        "T28",
+        "T29"
+      ]
+    },
+    {
+      "id": "Q35",
+      "section": "G",
+      "text": "当地公司与国内母公司之间预计会有哪些往来？（可多选）",
+      "type": "multi",
+      "required": true,
+      "options": [
+        {
+          "code": "buy_from_parent",
+          "label": "向母公司采购原材料或零部件"
+        },
+        {
+          "code": "sell_to_parent",
+          "label": "向母公司销售产品"
+        },
+        {
+          "code": "royalty_fee",
+          "label": "支付技术许可费或管理服务费"
+        },
+        {
+          "code": "shareholder_loan",
+          "label": "股东借款"
+        },
+        {
+          "code": "dividends",
+          "label": "利润汇回"
+        },
+        {
+          "code": "none",
+          "label": "暂无",
+          "exclusive": true
+        }
+      ],
+      "purpose": "关联交易需做转让定价安排；技术许可费涉及技术出口合同登记与预提税。",
+      "tasks": [
+        "T19",
+        "T30"
+      ]
+    },
+    {
+      "id": "Q36",
+      "section": "H",
+      "text": "希望平台承担哪些工作？（可多选）",
+      "type": "multi",
+      "required": true,
+      "options": [
+        {
+          "code": "full",
+          "label": "全流程总包",
+          "exclusive": true
+        },
+        {
+          "code": "china_odi",
+          "label": "国内境外投资手续"
+        },
+        {
+          "code": "company_setup",
+          "label": "当地公司设立"
+        },
+        {
+          "code": "incentive",
+          "label": "投资优惠申请"
+        },
+        {
+          "code": "site_land",
+          "label": "选址与土地"
+        },
+        {
+          "code": "construction",
+          "label": "厂房建设与工厂许可"
+        },
+        {
+          "code": "equipment",
+          "label": "设备转移与通关"
+        },
+        {
+          "code": "people",
+          "label": "人员签证与劳动用工"
+        },
+        {
+          "code": "tax_audit",
+          "label": "财税与审计"
+        },
+        {
+          "code": "annual_compliance",
+          "label": "投产后年度合规"
+        }
+      ],
+      "purpose": "决定平台承接哪些任务；未勾选的任务仍留在任务地图上，标记为“客户自行负责”。",
+      "tasks": []
+    },
+    {
+      "id": "Q37",
+      "section": "H",
+      "text": "在当地是否已接触过律所、会计师或咨询机构？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "none",
+          "label": "没有"
+        },
+        {
+          "code": "contacted",
+          "label": "已接触，尚未签约"
+        },
+        {
+          "code": "signed_some",
+          "label": "已与部分机构签约"
+        },
+        {
+          "code": "long_term",
+          "label": "有长期合作的机构"
+        }
+      ],
+      "purpose": "已签约的机构录入供应商库，PM 确认分工，避免重复委托。",
+      "tasks": []
+    },
+    {
+      "id": "Q38",
+      "section": "H",
+      "text": "在服务商选择上，贵公司更看重？",
+      "type": "single",
+      "required": false,
+      "options": [
+        {
+          "code": "cost",
+          "label": "优先控制成本"
+        },
+        {
+          "code": "balanced",
+          "label": "质量与成本平衡"
+        },
+        {
+          "code": "quality_speed",
+          "label": "优先质量和速度"
+        },
+        {
+          "code": "platform_advice",
+          "label": "请平台给出建议"
+        }
+      ],
+      "purpose": "作为智能采购（M3）中价格与质量的权重。",
+      "tasks": []
+    },
+    {
+      "id": "Q39",
+      "section": "H",
+      "text": "希望以什么方式了解项目进展？",
+      "type": "single",
+      "required": false,
+      "options": [
+        {
+          "code": "weekly_report",
+          "label": "每周书面进度报告"
+        },
+        {
+          "code": "biweekly_meeting",
+          "label": "每两周一次会议"
+        },
+        {
+          "code": "milestones",
+          "label": "只在关键节点沟通"
+        },
+        {
+          "code": "dedicated",
+          "label": "随时沟通，需要专人对接"
+        }
+      ],
+      "purpose": "设置 PM 的汇报节奏与通知规则。",
+      "tasks": []
+    },
+    {
+      "id": "Q40",
+      "section": "H",
+      "text": "本项目的最终决策人是？",
+      "type": "single",
+      "required": true,
+      "options": [
+        {
+          "code": "chairman_ceo",
+          "label": "董事长或总经理"
+        },
+        {
+          "code": "vp",
+          "label": "分管副总"
+        },
+        {
+          "code": "strategy_head",
+          "label": "投资或战略部门负责人"
+        },
+        {
+          "code": "legal_head",
+          "label": "法务负责人"
+        },
+        {
+          "code": "finance_head",
+          "label": "财务负责人"
+        }
+      ],
+      "purpose": "决定关键节点的审批对象与汇报材料的详略。",
+      "tasks": []
+    },
+    {
+      "id": "Q41",
+      "section": "H",
+      "text": "还有其他需要说明的情况吗？",
+      "type": "text",
+      "required": false,
+      "options": [],
+      "purpose": "全卷唯一的文本框，内容进入需求理解（M1）。",
+      "tasks": []
+    }
+  ],
+  "task_template": {
+    "name": "泰国制造业建厂",
+    "tasks": {
+      "T01": "投资方案诊断",
+      "T02": "中国文件公证认证",
+      "T03": "设备资产评估",
+      "T04": "发改部门备案",
+      "T05": "商务部门备案",
+      "T06": "外汇登记与资金汇出",
+      "T07": "香港中间层公司设立（可选）",
+      "T08": "泰国公司注册",
+      "T09": "银行开户与注资",
+      "T10": "税务与增值税登记",
+      "T11": "BOI 申请与取证",
+      "T12": "外商经营证书（如需）",
+      "T13": "选址与土地尽调",
+      "T14": "土地买卖或租赁及登记",
+      "T15": "环境评估（如需）",
+      "T16": "工程设计与建筑许可",
+      "T17": "厂房施工与竣工验收",
+      "T18": "工厂经营许可或 IEAT 许可",
+      "T19": "出口管制与技术出口核查",
+      "T20": "BOI 机器清单审批",
+      "T21": "设备出口报关与运输",
+      "T22": "泰国进口清关与免税放行",
+      "T23": "设备安装调试",
+      "T24": "人事制度与工作规章",
+      "T25": "招聘与入职",
+      "T26": "社保与工伤基金登记",
+      "T27": "外派政策与社保个税方案",
+      "T28": "BOI 外籍岗位与工作许可",
+      "T29": "BOI 开业检查",
+      "T30": "双边合规日历与年度申报"
+    },
+    "base_tasks": [
+      "T01",
+      "T02",
+      "T04",
+      "T05",
+      "T06",
+      "T08",
+      "T09",
+      "T10",
+      "T24",
+      "T25",
+      "T26",
+      "T30"
+    ]
+  },
+  "scope_map": {
+    "china_odi": [
+      "T04",
+      "T05",
+      "T06",
+      "T07"
+    ],
+    "company_setup": [
+      "T02",
+      "T08",
+      "T09",
+      "T12"
+    ],
+    "incentive": [
+      "T11",
+      "T20",
+      "T29"
+    ],
+    "site_land": [
+      "T13",
+      "T14"
+    ],
+    "construction": [
+      "T15",
+      "T16",
+      "T17",
+      "T18"
+    ],
+    "equipment": [
+      "T03",
+      "T19",
+      "T21",
+      "T22",
+      "T23"
+    ],
+    "people": [
+      "T24",
+      "T25",
+      "T26",
+      "T27",
+      "T28"
+    ],
+    "tax_audit": [
+      "T10"
+    ],
+    "annual_compliance": [
+      "T30"
+    ]
+  },
+  "rules": [
+    {
+      "id": "R01",
+      "name": "基础任务",
+      "when": {
+        "always": true
+      },
+      "when_text": "所有项目",
+      "then_text": "生成基础任务：T01、T02、T04–T06、T08–T10、T24–T26、T30。",
+      "actions": [
+        {
+          "type": "add_tasks",
+          "tasks": [
+            "T01",
+            "T02",
+            "T04",
+            "T05",
+            "T06",
+            "T08",
+            "T09",
+            "T10",
+            "T24",
+            "T25",
+            "T26",
+            "T30"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R02",
+      "name": "自建厂房",
+      "when": {
+        "q": "Q18",
+        "in": [
+          "buy_build",
+          "lease_build"
+        ]
+      },
+      "when_text": "Q18 选「购买土地并自建」或「租赁土地并自建」",
+      "then_text": "生成 T13–T18 整条土地厂房链路；T14、T16、T17、T18 为关键路径。",
+      "actions": [
+        {
+          "type": "add_tasks",
+          "tasks": [
+            "T13",
+            "T14",
+            "T15",
+            "T16",
+            "T17",
+            "T18"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R03",
+      "name": "租赁或定制厂房",
+      "when": {
+        "q": "Q18",
+        "in": [
+          "lease_ready",
+          "bts"
+        ]
+      },
+      "when_text": "Q18 选「租赁现成厂房」或「定制建设后租赁」",
+      "then_text": "生成 T13、T14、T15、T18；定制租赁时在 T14 下增加“厂房交付验收”子任务。",
+      "actions": [
+        {
+          "type": "add_tasks",
+          "tasks": [
+            "T13",
+            "T14",
+            "T15",
+            "T18"
+          ]
+        },
+        {
+          "type": "add_subtask",
+          "parent": "T14",
+          "position": "child",
+          "name": "厂房交付验收（定制租赁时）"
+        }
+      ]
+    },
+    {
+      "id": "R04",
+      "name": "收购",
+      "when": {
+        "any": [
+          {
+            "q": "Q06",
+            "in": [
+              "acquisition"
+            ]
+          },
+          {
+            "q": "Q18",
+            "in": [
+              "acquire_factory"
+            ]
+          }
+        ]
+      },
+      "when_text": "Q06 选「收购」或 Q18 选「收购现有工厂」",
+      "then_text": "生成 T13（改为并购尽调）、T14、T18（许可证变更）；另加“交易文件与交割”任务。",
+      "actions": [
+        {
+          "type": "add_tasks",
+          "tasks": [
+            "T13",
+            "T14",
+            "T18"
+          ]
+        },
+        {
+          "type": "set_variant",
+          "task": "T13",
+          "variant": "ma_dd",
+          "note": "并购尽调"
+        },
+        {
+          "type": "set_variant",
+          "task": "T18",
+          "variant": "transfer",
+          "note": "许可证变更"
+        },
+        {
+          "type": "add_custom_task",
+          "name": "交易文件与交割"
+        }
+      ]
+    },
+    {
+      "id": "R05",
+      "name": "合资",
+      "when": {
+        "q": "Q06",
+        "in": [
+          "jv"
+        ]
+      },
+      "when_text": "Q06 选「与当地企业合资」",
+      "then_text": "增加“合资协议谈判与起草”任务。",
+      "actions": [
+        {
+          "type": "add_custom_task",
+          "name": "合资协议谈判与起草"
+        }
+      ]
+    },
+    {
+      "id": "R06",
+      "name": "设备出境",
+      "when": {
+        "q": "Q21",
+        "in": [
+          "new_china",
+          "partial_transfer",
+          "mainly_transfer"
+        ]
+      },
+      "when_text": "Q21 选「从中国新购」或「从国内转移」",
+      "then_text": "生成 T19、T21、T22、T23。",
+      "actions": [
+        {
+          "type": "add_tasks",
+          "tasks": [
+            "T19",
+            "T21",
+            "T22",
+            "T23"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R07",
+      "name": "设备转移",
+      "when": {
+        "any": [
+          {
+            "q": "Q21",
+            "in": [
+              "partial_transfer",
+              "mainly_transfer"
+            ]
+          },
+          {
+            "q": "Q09",
+            "in": [
+              "equipment_in_kind"
+            ]
+          }
+        ]
+      },
+      "when_text": "Q21 选「转移在用设备」或 Q09 含「设备作价出资」",
+      "then_text": "增加 T03 设备资产评估，并生成 R06 的任务。",
+      "actions": [
+        {
+          "type": "add_tasks",
+          "tasks": [
+            "T03",
+            "T19",
+            "T21",
+            "T22",
+            "T23"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R08",
+      "name": "当地或第三国购设备",
+      "when": {
+        "q": "Q21",
+        "in": [
+          "local_third"
+        ]
+      },
+      "when_text": "Q21 选「当地或第三国新购」",
+      "then_text": "生成 T22（从第三国进口时）、T23。",
+      "actions": [
+        {
+          "type": "add_tasks",
+          "tasks": [
+            "T22",
+            "T23"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R09",
+      "name": "旧设备役龄",
+      "when": {
+        "q": "Q22",
+        "in": [
+          "gt_10",
+          "unknown"
+        ]
+      },
+      "when_text": "Q22 含「10 年以上」或「不清楚」",
+      "then_text": "高风险提示：逐台核对旧设备进口条件（役龄、检测证书），超龄设备可能无法免税或无法进口。",
+      "actions": [
+        {
+          "type": "flag",
+          "level": "high",
+          "text": "逐台核对旧设备役龄与检测要求"
+        },
+        {
+          "type": "set_priority",
+          "task": "T20",
+          "priority": "high"
+        }
+      ]
+    },
+    {
+      "id": "R10",
+      "name": "海关监管设备",
+      "when": {
+        "q": "Q24",
+        "in": [
+          "yes",
+          "unknown"
+        ]
+      },
+      "when_text": "Q24 选「有」或「不清楚」",
+      "then_text": "在 T21 之前增加“解除海关监管或补税”子任务。",
+      "actions": [
+        {
+          "type": "add_subtask",
+          "parent": "T21",
+          "position": "before",
+          "name": "解除海关监管或补税"
+        }
+      ]
+    },
+    {
+      "id": "R11",
+      "name": "技术出口",
+      "when": {
+        "any": [
+          {
+            "q": "Q25",
+            "in": [
+              "transfer_ip",
+              "dispatch_tech"
+            ]
+          },
+          {
+            "q": "Q26",
+            "in": [
+              "possible",
+              "unknown"
+            ]
+          },
+          {
+            "q": "Q35",
+            "in": [
+              "royalty_fee"
+            ]
+          }
+        ]
+      },
+      "when_text": "Q25 含「转让授权」或「派技术人员」，或 Q26 选「可能」「不清楚」，或 Q35 含「技术许可费」",
+      "then_text": "T19 设为必做、高优先级；派技术人员指导同样可能构成技术出口。",
+      "actions": [
+        {
+          "type": "add_tasks",
+          "tasks": [
+            "T19"
+          ]
+        },
+        {
+          "type": "set_priority",
+          "task": "T19",
+          "priority": "high"
+        }
+      ]
+    },
+    {
+      "id": "R12",
+      "name": "管制物项",
+      "when": {
+        "q": "Q26",
+        "in": [
+          "possible"
+        ]
+      },
+      "when_text": "Q26 选「可能涉及」",
+      "then_text": "高风险提示：取得出口许可前设备不得出境，T21 依赖 T19 结论。",
+      "actions": [
+        {
+          "type": "flag",
+          "level": "high",
+          "text": "管制物项须先取得出口许可"
+        },
+        {
+          "type": "set_priority",
+          "task": "T19",
+          "priority": "high"
+        }
+      ]
+    },
+    {
+      "id": "R13",
+      "name": "申请投资优惠",
+      "when": {
+        "q": "Q34",
+        "in": [
+          "plan",
+          "applying",
+          "obtained",
+          "unsure"
+        ]
+      },
+      "when_text": "Q34 选「计划」「正在申请」「已取得」「需要评估」",
+      "then_text": "生成 T11、T29；有设备进口时加 T20；有派驻人员时 T28 走 BOI 路径。已取得的标记 T11 完成并要求上传证书。",
+      "actions": [
+        {
+          "type": "add_tasks",
+          "tasks": [
+            "T11",
+            "T29"
+          ]
+        },
+        {
+          "type": "add_tasks_if",
+          "if": {
+            "q": "Q21",
+            "in": [
+              "local_third",
+              "new_china",
+              "partial_transfer",
+              "mainly_transfer"
+            ]
+          },
+          "tasks": [
+            "T20"
+          ]
+        },
+        {
+          "type": "add_tasks_if",
+          "if": {
+            "q": "Q28",
+            "not_in": [
+              "none"
+            ]
+          },
+          "tasks": [
+            "T28"
+          ]
+        },
+        {
+          "type": "actions_if",
+          "if": {
+            "q": "Q34",
+            "in": [
+              "obtained"
+            ]
+          },
+          "actions": [
+            {
+              "type": "mark_done",
+              "tasks": [
+                "T11"
+              ]
+            },
+            {
+              "type": "request_upload",
+              "tasks": [
+                "T11"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R14",
+      "name": "不申请投资优惠",
+      "when": {
+        "all": [
+          {
+            "q": "Q34",
+            "in": [
+              "not_apply"
+            ]
+          },
+          {
+            "project": "country",
+            "in": [
+              "TH"
+            ]
+          }
+        ]
+      },
+      "when_text": "Q34 选「不打算申请」，且国家为泰国",
+      "then_text": "移除 T11、T20、T29；T28 改为普通工作许可，提示每名外籍员工需 4 名泰籍员工和 200 万泰铢注册资本；外资公司不能在园区外购地。",
+      "actions": [
+        {
+          "type": "remove_tasks",
+          "tasks": [
+            "T11",
+            "T20",
+            "T29"
+          ]
+        },
+        {
+          "type": "add_tasks_if",
+          "if": {
+            "q": "Q28",
+            "not_in": [
+              "none"
+            ]
+          },
+          "tasks": [
+            "T28"
+          ]
+        },
+        {
+          "type": "set_variant",
+          "task": "T28",
+          "variant": "standard",
+          "note": "普通工作许可：每名外籍员工对应 4 名泰籍员工、200 万泰铢注册资本"
+        },
+        {
+          "type": "flag",
+          "level": "medium",
+          "text": "不享受机器进口免税，外资购地受限"
+        }
+      ]
+    },
+    {
+      "id": "R15",
+      "name": "园区外购地冲突",
+      "when": {
+        "all": [
+          {
+            "q": "Q18",
+            "in": [
+              "buy_build"
+            ]
+          },
+          {
+            "q": "Q17",
+            "in": [
+              "out_estate"
+            ]
+          },
+          {
+            "q": "Q07",
+            "in": [
+              "wfoe",
+              "majority"
+            ]
+          },
+          {
+            "q": "Q34",
+            "in": [
+              "not_apply"
+            ]
+          },
+          {
+            "project": "country",
+            "in": [
+              "TH"
+            ]
+          }
+        ]
+      },
+      "when_text": "Q18 购地自建 + Q17 园区外 + Q07 中方持股 ≥50% + Q34 不申请",
+      "then_text": "高风险提示：外资控股公司不申请 BOI 无法在园区外购地，建议改为园区内或租赁。",
+      "actions": [
+        {
+          "type": "flag",
+          "level": "high",
+          "text": "外资公司园区外购地需 BOI 土地许可"
+        }
+      ]
+    },
+    {
+      "id": "R16",
+      "name": "外商经营证书",
+      "when": {
+        "all": [
+          {
+            "q": "Q07",
+            "in": [
+              "wfoe",
+              "majority"
+            ]
+          },
+          {
+            "q": "Q06",
+            "in": [
+              "trading_co",
+              "regional_hq"
+            ]
+          },
+          {
+            "q": "Q34",
+            "not_in": [
+              "plan",
+              "applying",
+              "obtained"
+            ]
+          },
+          {
+            "project": "country",
+            "in": [
+              "TH"
+            ]
+          }
+        ]
+      },
+      "when_text": "Q07 中方持股 ≥50% + Q06 贸易或总部 + 未申请 BOI，且国家为泰国",
+      "then_text": "生成 T12：贸易、服务类业务多属外商经营法限制行业，通常需申请外商经营证书。",
+      "actions": [
+        {
+          "type": "add_tasks",
+          "tasks": [
+            "T12"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R17",
+      "name": "少数股权",
+      "when": {
+        "all": [
+          {
+            "q": "Q07",
+            "in": [
+              "minority"
+            ]
+          },
+          {
+            "project": "country",
+            "in": [
+              "TH"
+            ]
+          }
+        ]
+      },
+      "when_text": "Q07 选「低于 50%」，且国家为泰国",
+      "then_text": "提示：泰方股东须真实出资，代持违反外商经营法。",
+      "actions": [
+        {
+          "type": "flag",
+          "level": "medium",
+          "text": "核查泰方股东真实出资，避免代持"
+        }
+      ]
+    },
+    {
+      "id": "R18",
+      "name": "工期过紧",
+      "when": {
+        "all": [
+          {
+            "q": "Q12",
+            "in": [
+              "lt_6m",
+              "6_12m"
+            ]
+          },
+          {
+            "q": "Q18",
+            "in": [
+              "buy_build",
+              "lease_build",
+              "bts"
+            ]
+          }
+        ]
+      },
+      "when_text": "Q12 选 12 个月以内 + Q18 为自建或定制",
+      "then_text": "高风险提示：新建厂房从决策到量产通常约 15 个月，建议先租赁现成厂房过渡或调整预期。",
+      "actions": [
+        {
+          "type": "flag",
+          "level": "high",
+          "text": "期望投产时间短于新建厂房的常规周期"
+        }
+      ]
+    },
+    {
+      "id": "R19",
+      "name": "外派人员",
+      "when": {
+        "q": "Q28",
+        "not_in": [
+          "none"
+        ]
+      },
+      "when_text": "Q28 不为「不派驻」",
+      "then_text": "生成 T27、T28；Q30 选「保留国内合同」或「两边都签」时，T27 须包含两地社保个税方案（中泰无社保互免协定）。",
+      "actions": [
+        {
+          "type": "add_tasks",
+          "tasks": [
+            "T27",
+            "T28"
+          ]
+        },
+        {
+          "type": "actions_if",
+          "if": {
+            "q": "Q30",
+            "in": [
+              "keep_china",
+              "dual"
+            ]
+          },
+          "actions": [
+            {
+              "type": "add_subtask",
+              "parent": "T27",
+              "position": "child",
+              "name": "两地社保与个税缴纳方案"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R20",
+      "name": "泰籍员工比例",
+      "when": {
+        "all": [
+          {
+            "q": "Q27",
+            "in": [
+              "100_300",
+              "300_1000",
+              "gt_1000"
+            ]
+          },
+          {
+            "q": "Q34",
+            "in": [
+              "plan",
+              "applying",
+              "obtained",
+              "unsure"
+            ]
+          },
+          {
+            "project": "country",
+            "in": [
+              "TH"
+            ]
+          }
+        ]
+      },
+      "when_text": "Q27 超过 100 人 + 申请 BOI，且国家为泰国",
+      "then_text": "T28 增加检查项：泰籍员工比例不低于 70%。",
+      "actions": [
+        {
+          "type": "add_subtask",
+          "parent": "T28",
+          "position": "child",
+          "name": "核对泰籍员工比例（不低于 70%）"
+        }
+      ]
+    },
+    {
+      "id": "R21",
+      "name": "国内手续已办",
+      "when": {
+        "q": "Q32",
+        "in": [
+          "partial",
+          "done"
+        ]
+      },
+      "when_text": "Q32 选「部分」或「全部完成」",
+      "then_text": "全部完成：T04–T06 标记完成并要求上传凭证；部分完成：要求上传已取得的凭证，由 PM 确认各项状态。",
+      "actions": [
+        {
+          "type": "request_upload",
+          "tasks": [
+            "T04",
+            "T05",
+            "T06"
+          ]
+        },
+        {
+          "type": "actions_if",
+          "if": {
+            "q": "Q32",
+            "in": [
+              "done"
+            ]
+          },
+          "actions": [
+            {
+              "type": "mark_done",
+              "tasks": [
+                "T04",
+                "T05",
+                "T06"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "actions_if",
+          "if": {
+            "q": "Q32",
+            "in": [
+              "partial"
+            ]
+          },
+          "actions": [
+            {
+              "type": "pm_todo",
+              "text": "确认 T04–T06 各项状态"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R22",
+      "name": "先出境后备案",
+      "when": {
+        "q": "Q33",
+        "in": [
+          "fees_only",
+          "funds_or_equipment"
+        ]
+      },
+      "when_text": "Q33 选「前期费用」或「资金或设备已出境」",
+      "then_text": "已有资金或设备出境：最高优先级，关联律所先评估补救方案，后续出资任务暂停。仅汇出前期费用：核对是否已按规定登记。",
+      "actions": [
+        {
+          "type": "actions_if",
+          "if": {
+            "q": "Q33",
+            "in": [
+              "funds_or_equipment"
+            ]
+          },
+          "actions": [
+            {
+              "type": "flag",
+              "level": "high",
+              "text": "资金或设备已先行出境"
+            },
+            {
+              "type": "add_custom_task",
+              "name": "先行出境合规评估与补救（关联律所）"
+            },
+            {
+              "type": "hold_tasks",
+              "tasks": [
+                "T06",
+                "T21"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "actions_if",
+          "if": {
+            "q": "Q33",
+            "in": [
+              "fees_only"
+            ]
+          },
+          "actions": [
+            {
+              "type": "flag",
+              "level": "medium",
+              "text": "核对前期费用登记"
+            },
+            {
+              "type": "add_subtask",
+              "parent": "T06",
+              "position": "child",
+              "name": "前期费用登记核对"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R23",
+      "name": "境外中间层",
+      "when": {
+        "q": "Q08",
+        "in": [
+          "hk",
+          "sg",
+          "other_offshore"
+        ]
+      },
+      "when_text": "Q08 选香港、新加坡或其他境外公司",
+      "then_text": "生成 T07（按所选地区命名），备案口径按经中间层投资处理。",
+      "actions": [
+        {
+          "type": "add_tasks",
+          "tasks": [
+            "T07"
+          ]
+        },
+        {
+          "type": "set_variant",
+          "task": "T07",
+          "variant": "by_q08",
+          "note": "按 Q08 所选地区命名中间层"
+        }
+      ]
+    },
+    {
+      "id": "R24",
+      "name": "个人投资",
+      "when": {
+        "any": [
+          {
+            "q": "Q08",
+            "in": [
+              "individual"
+            ]
+          },
+          {
+            "q": "Q01",
+            "in": [
+              "individual"
+            ]
+          }
+        ]
+      },
+      "when_text": "Q08 或 Q01 选「个人」",
+      "then_text": "高风险提示：个人境外投资路径与企业不同，T04–T06 改为专项评估。",
+      "actions": [
+        {
+          "type": "flag",
+          "level": "high",
+          "text": "个人境外投资路径需关联律所专项评估"
+        },
+        {
+          "type": "set_variant",
+          "task": "T04",
+          "variant": "individual",
+          "note": "专项评估"
+        },
+        {
+          "type": "set_variant",
+          "task": "T05",
+          "variant": "individual",
+          "note": "专项评估"
+        },
+        {
+          "type": "set_variant",
+          "task": "T06",
+          "variant": "individual",
+          "note": "专项评估"
+        }
+      ]
+    },
+    {
+      "id": "R25",
+      "name": "国企与上市公司",
+      "when": {
+        "q": "Q01",
+        "in": [
+          "central_soe",
+          "local_soe",
+          "listed"
+        ]
+      },
+      "when_text": "Q01 选央企、地方国企或上市公司",
+      "then_text": "国企：T04 前增加“国资审批与内部决策”子任务；上市公司：增加“对外投资信息披露”子任务。",
+      "actions": [
+        {
+          "type": "actions_if",
+          "if": {
+            "q": "Q01",
+            "in": [
+              "central_soe",
+              "local_soe"
+            ]
+          },
+          "actions": [
+            {
+              "type": "add_subtask",
+              "parent": "T04",
+              "position": "before",
+              "name": "国资审批与内部决策"
+            }
+          ]
+        },
+        {
+          "type": "actions_if",
+          "if": {
+            "q": "Q01",
+            "in": [
+              "listed"
+            ]
+          },
+          "actions": [
+            {
+              "type": "add_subtask",
+              "parent": "T04",
+              "position": "before",
+              "name": "对外投资信息披露"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "R26",
+      "name": "关联交易",
+      "when": {
+        "q": "Q35",
+        "in": [
+          "buy_from_parent",
+          "sell_to_parent",
+          "royalty_fee",
+          "shareholder_loan"
+        ]
+      },
+      "when_text": "Q35 含采购、销售、许可费或借款",
+      "then_text": "T30 增加“转让定价与关联交易申报”子任务。",
+      "actions": [
+        {
+          "type": "add_subtask",
+          "parent": "T30",
+          "position": "child",
+          "name": "转让定价与关联交易申报"
+        }
+      ]
+    },
+    {
+      "id": "R27",
+      "name": "原产地与贸易合规",
+      "when": {
+        "any": [
+          {
+            "q": "Q14",
+            "in": [
+              "us",
+              "eu"
+            ]
+          },
+          {
+            "q": "Q13",
+            "in": [
+              "tariff"
+            ]
+          }
+        ]
+      },
+      "when_text": "Q14 含美国或欧洲，或 Q13 含「应对关税」",
+      "then_text": "增加“原产地与贸易合规评估”任务。",
+      "actions": [
+        {
+          "type": "add_custom_task",
+          "name": "原产地与贸易合规评估"
+        },
+        {
+          "type": "flag",
+          "level": "medium",
+          "text": "销往欧美或以关税为目的，需评估原产地与反规避风险"
+        }
+      ]
+    },
+    {
+      "id": "R28",
+      "name": "环保敏感",
+      "when": {
+        "any": [
+          {
+            "q": "Q20",
+            "in": [
+              "wastewater",
+              "emissions",
+              "hazchem",
+              "noise",
+              "high_power"
+            ]
+          },
+          {
+            "q": "Q02",
+            "in": [
+              "chemical",
+              "metal"
+            ]
+          }
+        ]
+      },
+      "when_text": "Q20 勾选任一环保特征，或 Q02 为化工、金属加工",
+      "then_text": "T15 设为必做、高优先级。",
+      "actions": [
+        {
+          "type": "add_tasks",
+          "tasks": [
+            "T15"
+          ]
+        },
+        {
+          "type": "set_priority",
+          "task": "T15",
+          "priority": "high"
+        }
+      ]
+    },
+    {
+      "id": "R29",
+      "name": "已在目的国设公司",
+      "when": {
+        "q": "Q04",
+        "in": [
+          "this_country"
+        ]
+      },
+      "when_text": "Q04 选「在本次目的国已设立过公司」",
+      "then_text": "提示 PM 评估以现有当地公司增资扩产；如采用，T08 改为增资变更。",
+      "actions": [
+        {
+          "type": "pm_todo",
+          "text": "评估是否以现有当地公司增资扩产"
+        },
+        {
+          "type": "set_variant",
+          "task": "T08",
+          "variant": "capital_increase",
+          "note": "如采用现有公司，改为增资变更"
+        }
+      ]
+    },
+    {
+      "id": "R30",
+      "name": "已有当地机构",
+      "when": {
+        "q": "Q37",
+        "in": [
+          "signed_some",
+          "long_term"
+        ]
+      },
+      "when_text": "Q37 选「已签约」或「长期合作」",
+      "then_text": "PM 待办：把客户现有机构录入供应商库并确认分工。",
+      "actions": [
+        {
+          "type": "pm_todo",
+          "text": "录入客户现有服务机构并确认分工"
+        }
+      ]
+    },
+    {
+      "id": "R31",
+      "name": "服务范围",
+      "when": {
+        "always": true
+      },
+      "when_text": "所有项目",
+      "then_text": "按 Q36 与服务范围映射表确定每项任务的负责方；未覆盖的任务标记“客户自行负责”，仍显示在任务地图上。选「全流程总包」时全部由平台承接。",
+      "actions": [
+        {
+          "type": "apply_scope",
+          "question": "Q36",
+          "map": "scope_map"
+        }
+      ]
+    },
+    {
+      "id": "R32",
+      "name": "自动追问",
+      "when": {
+        "any_followup": true
+      },
+      "when_text": "任一带追问标记的选项被选中",
+      "then_text": "客户选中任何「不确定 / 不清楚 / 尚未确定 / 其他」类选项，在 M1 追问清单生成一条追问，由 PM 跟进。",
+      "actions": [
+        {
+          "type": "generate_followups"
+        }
+      ]
+    }
+  ],
+  "rule_evaluation": "规则按编号顺序执行，后执行的覆盖先执行的；apply_scope（R31）与 generate_followups（R32）最后执行。"
+}

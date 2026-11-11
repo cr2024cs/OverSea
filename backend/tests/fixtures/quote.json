@@ -1,0 +1,13 @@
+{
+  "step": "parse_quote",
+  "currency": "CNY",
+  "amount_cents": 40000000,
+  "items": [
+    {"name": "BOI 活动类别与可行性分析", "amount_cents": 8000000},
+    {"name": "BOI 申请材料准备与提交", "amount_cents": 18000000},
+    {"name": "面谈支持与取证跟进", "amount_cents": 14000000}
+  ],
+  "assumptions": "假设客户提供完整工艺说明与设备清单；不含 BOI 规费与差旅。",
+  "exclusions": "不含工厂建设、设备采购与本地环评费用。",
+  "payment_terms": "签约 50%，取证 50%。"
+}

@@ -1,0 +1,40 @@
+{
+  "step": "extract_facts",
+  "facts": [
+    {
+      "key": "投资总额",
+      "value": "3,000 万美元",
+      "status": "confirmed",
+      "source_doc": "ODI备案通知书（演示）.txt",
+      "quote": "投资总额 3,000 万美元"
+    },
+    {
+      "key": "设备实物出资",
+      "value": "800 万美元",
+      "status": "confirmed",
+      "source_doc": "ODI备案通知书（演示）.txt",
+      "quote": "设备实物出资 800 万美元"
+    },
+    {
+      "key": "注册资本",
+      "value": "1 亿泰铢",
+      "status": "assumption",
+      "source_doc": "公司章程摘要（演示）.txt",
+      "quote": "注册资本 1 亿泰铢"
+    },
+    {
+      "key": "厂房方案",
+      "value": "园区内租赁 30 年",
+      "status": "assumption",
+      "source_doc": "厂房租赁意向书（演示）.txt",
+      "quote": "租赁期限 30 年，到期后自动续期 30 年"
+    },
+    {
+      "key": "设备总功率",
+      "value": "1,250 kW",
+      "status": "confirmed",
+      "source_doc": "设备清单（演示）.txt",
+      "quote": "总功率 1,250 kW"
+    }
+  ]
+}
